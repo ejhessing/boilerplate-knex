@@ -4,10 +4,11 @@
     <title>Profiles</title>
   </head>
   <body>
-<!--     {{profiles}}
- -->
-    {{#each profiles}}
-      {{url}}
-    {{/each}}
+    <ul>
+      {{profiles.name}}
+      {{profiles.url}}
+      {{profiles.email}}
+      <img src="{{profiles.profilePic}}" alt=""/>
+    </ul>
   </body>
 </html>
