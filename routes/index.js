@@ -3,7 +3,8 @@ var development = require('../knexfile').development
 var knex = require('knex')(development)
 
 module.exports = {
-  get: get
+  get: get,
+  profilePage: profilePage
 }
 
 function get (req, res) {
@@ -15,4 +16,22 @@ function get (req, res) {
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
+}
+
+function profilePage (req, res) {
+  knex('users')
+  .join('profiles', 'user_id', '=', 'users.id')
+  .select('profiles.url', 'users.id')
+  .then(print)
+  .then(function (data) {
+    res.render('profile', {profiles: data})
+  })
+  .catch(function(err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
+}
+
+
+function print (data) {
+  console.log(data)
 }

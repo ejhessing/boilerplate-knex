@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', index.get)
 
+app.get('/profilePage', index.profilePage)
+
 app.listen(PORT, function () {
   console.log('Listening on port', PORT)
 })
